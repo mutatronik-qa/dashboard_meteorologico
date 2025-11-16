@@ -1,0 +1,54 @@
+{
+  "locations": [
+    {
+      "name": "Medellín",
+      "lat": 6.2442,
+      "lon": -75.5812,
+      "altitude": 1495
+    },
+    {
+      "name": "Bello",
+      "lat": 6.3373,
+      "lon": -75.5579,
+      "altitude": 1450
+    },
+    {
+      "name": "Envigado",
+      "lat": 6.1696,
+      "lon": -75.5781,
+      "altitude": 1675
+    },
+    {
+      "name": "Itagüí",
+      "lat": 6.1846,
+      "lon": -75.5991,
+      "altitude": 1550
+    },
+    {
+      "name": "Sabaneta",
+      "lat": 6.1515,
+      "lon": -75.6164,
+      "altitude": 1550
+    },
+    {
+      "name": "La Estrella",
+      "lat": 6.1577,
+      "lon": -75.6431,
+      "altitude": 1775
+    },
+    {
+      "name": "Caldas",
+      "lat": 6.0914,
+      "lon": -75.6356,
+      "altitude": 1750
+    },
+    {
+      "name": "Copacabana",
+      "lat": 6.3464,
+      "lon": -75.5089,
+      "altitude": 1454
+    }
+  ]
+}
+
+
