@@ -7,8 +7,8 @@ y variables de entorno para API keys.
 """
 
 from typing import Dict, List, Optional
-from pydantic import BaseSettings, Field, validator
-from pydantic_settings import BaseSettings as PydanticBaseSettings
+from pydantic import Field, validator
+from pydantic_settings import BaseSettings
 import os
 from pathlib import Path
 
@@ -29,7 +29,7 @@ class LocationConfig(BaseSettings):
         extra = "forbid"
 
 
-class Settings(PydanticBaseSettings):
+class Settings(BaseSettings):
     """Configuración principal del proyecto."""
 
     # API Keys
