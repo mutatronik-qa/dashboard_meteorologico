@@ -23,9 +23,16 @@ class BaseWeatherSource(ABC):
     """
     Clase base abstracta para todas las fuentes de datos meteorológicos.
 
-    Esta clase proporciona funcionalidad común como manejo de errores,
-    reintentos automáticos, y logging. Las clases hijas deben implementar
-    los métodos abstractos para obtener datos específicos de cada API.
+    Patrón de diseño: Template Method / Strategy
+    
+    Esta clase define el contrato que deben seguir todas las implementaciones de fuentes de datos.
+    Proporciona funcionalidad común robusta para:
+    - Manejo de sesiones HTTP (requests.Session).
+    - Sistema de reintentos automático con backoff exponencial para manejar fallos de red.
+    - Logging estandarizado.
+    - Manejo de timeouts.
+
+    Las clases hijas solo necesitan implementar `get_current_weather` y `get_forecast`.
     """
 
     def __init__(

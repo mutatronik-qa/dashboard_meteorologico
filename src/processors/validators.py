@@ -1,8 +1,14 @@
 """
 Validadores de datos meteorológicos.
 
-Este módulo proporciona funciones para validar datos meteorológicos
-y detectar anomalías antes de procesarlos o almacenarlos.
+Este módulo actúa como una capa de "Calidad de Datos" (Data Quality).
+Su objetivo es asegurar que los datos que entran al sistema sean físicamente posibles
+y consistentes.
+
+Funciones principales:
+- Validación de rangos físicos (ej. humedad 0-100%).
+- Detección de anomalías contextuales (ej. temperatura extrema para Medellín).
+- Validación de tipos de datos y timestamps.
 """
 
 from typing import Dict, Any, List, Optional, Tuple

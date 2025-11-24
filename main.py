@@ -1,8 +1,17 @@
 """
 Script principal del dashboard meteorológico.
 
-Este script proporciona una interfaz de línea de comandos para ejecutar
-el dashboard y obtener datos meteorológicos.
+Este script actúa como el punto de entrada para la interfaz de línea de comandos (CLI).
+Su función es orquestar la interacción con el usuario, inicializar los componentes
+del sistema (fuentes de datos, procesadores, dashboard) y presentar los resultados
+en la terminal de manera visual usando la librería 'rich'.
+
+Flujo principal:
+1. Parseo de argumentos de línea de comandos.
+2. Configuración del sistema de logging.
+3. Carga de configuración y ubicaciones.
+4. Inicialización de fuentes de datos (OpenMeteo, OpenWeather, etc.).
+5. Ejecución de la acción solicitada (listar, obtener clima actual, pronóstico).
 """
 
 import argparse
@@ -33,13 +42,17 @@ console = Console()
 
 def create_sources(settings) -> list:
     """
-    Crea instancias de todas las fuentes de datos disponibles.
+    Crea e inicializa las instancias de todas las fuentes de datos disponibles.
+    
+    Esta función verifica qué API keys están configuradas en los settings y
+    crea las instancias correspondientes. Open-Meteo y SIATA se inicializan
+    siempre ya que no requieren autenticación (o su manejo es interno).
 
     Args:
-        settings: Configuración del proyecto
+        settings: Objeto de configuración con las credenciales y parámetros.
 
     Returns:
-        list: Lista de fuentes de datos inicializadas
+        list: Lista de objetos que heredan de BaseWeatherSource, listos para usar.
     """
     sources = []
 
@@ -245,10 +258,13 @@ def main():
         sys.exit(1)
 
     # Crear dashboard
+    # El CacheManager se encarga de persistir datos para evitar llamadas excesivas a APIs
     cache_manager = CacheManager(
         cache_dir=settings.cache_dir, ttl_minutes=settings.cache_ttl_minutes
     )
+    # El DataProcessor normaliza los datos de diferentes fuentes a un formato común
     processor = DataProcessor(cache_manager=cache_manager)
+    # El Dashboard coordina la obtención y visualización
     dashboard = Dashboard(sources, processor=processor, cache_manager=cache_manager)
 
     # Obtener datos

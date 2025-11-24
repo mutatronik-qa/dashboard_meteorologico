@@ -2,7 +2,14 @@
 API REST para el sistema IoT.
 
 Esta API expone endpoints para obtener datos meteorológicos actuales y pronósticos,
-diseñada para ser consumida por dispositivos IoT y otros servicios.
+diseñada específicamente para ser consumida por dispositivos IoT con recursos limitados
+o sistemas externos que requieren datos JSON estandarizados.
+
+Características:
+- Agregación de múltiples fuentes de datos.
+- Caché automático para reducir latencia y consumo de cuotas de API.
+- Validación y limpieza de datos antes de la respuesta.
+- Documentación automática (Swagger/OpenAPI) en /docs.
 """
 
 from fastapi import FastAPI, HTTPException, Query

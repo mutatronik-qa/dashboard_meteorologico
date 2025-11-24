@@ -17,10 +17,14 @@ logger = logging.getLogger(__name__)
 
 class DataProcessor:
     """
-    Procesador de datos meteorológicos.
+    Procesador central de datos meteorológicos.
 
-    Esta clase estandariza datos de diferentes fuentes, convierte unidades,
-    combina datos de múltiples ubicaciones y fuentes, y valida los datos.
+    Responsabilidades:
+    1. **Normalización**: Convierte respuestas JSON heterogéneas de diferentes APIs a un esquema común.
+    2. **Conversión de Unidades**: Asegura que todos los datos estén en el mismo sistema (Celsius, km/h, etc.).
+    3. **Validación**: Detecta valores anómalos (ej. temperatura > 60°C) usando `validators.py`.
+    4. **Agregación**: Combina datos de múltiples fuentes para generar un "consenso" (promedios).
+    5. **Persistencia**: Interactúa con `CacheManager` para guardar/recuperar datos procesados.
     """
 
     def __init__(self, cache_manager: Optional[CacheManager] = None):

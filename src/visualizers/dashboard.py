@@ -28,10 +28,16 @@ logger = logging.getLogger(__name__)
 
 class Dashboard:
     """
-    Dashboard principal para datos meteorológicos.
+    Controlador principal del Dashboard.
 
-    Esta clase orquesta la obtención de datos de múltiples fuentes,
-    procesamiento, y generación de visualizaciones.
+    Esta clase actúa como el "Facade" del sistema de visualización.
+    Abstrae la complejidad de:
+    1. Coordinar múltiples fuentes de datos (`sources`).
+    2. Gestionar el ciclo de vida de los datos (obtención -> caché -> procesamiento).
+    3. Generar objetos de visualización (gráficos, mapas) listos para ser renderizados.
+
+    Es agnóstica de la interfaz de usuario final (CLI, Streamlit, Jupyter),
+    entregando datos estructurados y figuras de Plotly/Rich.
     """
 
     def __init__(

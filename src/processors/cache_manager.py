@@ -26,7 +26,14 @@ class CacheManager:
     """
     Gestor de caché para datos meteorológicos.
 
-    Usa diskcache para persistir datos en disco con TTL configurable.
+    Implementa una estrategia de caché de dos niveles (si está disponible):
+    1. **Persistente (DiskCache)**: Almacena datos en disco (SQLite) para sobrevivir a reinicios.
+    2. **Fallback (Memoria)**: Si `diskcache` no está instalado, usa un diccionario en memoria.
+
+    Características:
+    - **TTL (Time To Live)**: Expiración automática de datos antiguos.
+    - **Límite de Tamaño**: Evita que el caché crezca indefinidamente (LRU policy).
+    - **Claves Deterministas**: Genera claves hash MD5 basadas en los parámetros de la petición.
     """
 
     def __init__(

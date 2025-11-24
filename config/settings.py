@@ -1,9 +1,13 @@
 """
 Configuración central del proyecto usando Pydantic.
 
-Este módulo define todas las configuraciones del sistema incluyendo
-URLs de APIs, coordenadas de ubicaciones, parámetros de caché,
-y variables de entorno para API keys.
+Este módulo define todas las configuraciones del sistema siguiendo el principio de "Twelve-Factor App".
+Utiliza `pydantic-settings` para cargar variables desde:
+1. Variables de entorno del sistema.
+2. Archivo `.env` en la raíz del proyecto.
+3. Valores por defecto definidos en el código.
+
+Incluye validación de tipos y rangos para asegurar que la configuración sea correcta al inicio.
 """
 
 from typing import Dict, List, Optional

@@ -17,8 +17,12 @@ class MeteoBlueSource(BaseWeatherSource):
     """
     Fuente de datos para MeteoBlue API.
 
-    Requiere API key y es una solución profesional para datos
-    meteorológicos de alta calidad.
+    Esta clase implementa la interfaz `BaseWeatherSource` para consumir la API de MeteoBlue.
+    
+    Características específicas:
+    - **Alta Precisión**: MeteoBlue es conocido por sus modelos de alta resolución.
+    - **Formatos**: Soporta JSON y Protobuf (aunque aquí usamos JSON por simplicidad).
+    - **Paquetes**: La API se divide en "paquetes" (basic-1h, basic-day) que deben solicitarse explícitamente.
     """
 
     def __init__(
